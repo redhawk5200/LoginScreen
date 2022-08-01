@@ -18,19 +18,24 @@ import {
   Modal,
 } from 'react-native';
 import styles from './styles';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const Login = ({navigation}) =>{
 
     const [email, setemail] = useState('');
     const [password, setpassword] = useState('');
 
-    const submit = () =>{
+    const submit = async() =>{
         if(email === "Abdul" && password==="Wahab"){
-            navigation.navigate('Display Details', {myEmail : `${email}`})
+            try {
+                await AsyncStorage.setItem('email',email);
+                navigation.navigate('Display Details', {myEmail : `${email}`})
+            } catch (error) {
+                Alert.alert("Error");
+            }
         }
         else{
-        return Alert.alert("Incorrect credentials")
+            return Alert.alert("Incorrect credentials")
         }
     }
 

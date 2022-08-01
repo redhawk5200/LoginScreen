@@ -23,6 +23,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Login } from './Loginscreen1';
 import { Displaycredentials } from './Displaycredentials';
 
+
 export default function App(){
   
   const Stack = createNativeStackNavigator();
