@@ -18,15 +18,33 @@ import {
   Modal,
 } from 'react-native';
 import styles from './styles';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const Displaycredentials = ({route, navigation}) =>{
 
-    const {myEmail} = route.params;
+    const [email, setEmail] = useState('');
+
+    useEffect(()=>{
+        getData();
+    }, [])
+
+    const getData = () =>{
+        try {
+            AsyncStorage.getItem('email').then(value=>{
+                if(value == 'Abdul'){
+                    setEmail(value);
+                }
+            })
+        } catch (error) {
+            Alert.alert(error);
+        }
+    }
 
     return(
         <View style={styles.Displaycredentialscontainer}>
-            <Text style={styles.Displaycredentialstext}>Welcome User! Your email address is: {myEmail}</Text>
-            <Button title='Go Back' onPress={()=>navigation.goBack()}/>
+            <Text style={styles.Displaycredentialstext}>Welcome User! Your email address is: {email}</Text>
+            <TouchableOpacity style={styles.Displaycredentialsgobackbutton} onPress={()=>navigation.goBack()}><Text>Go Back</Text></TouchableOpacity>
+            {/*<TouchableOpacity style={styles.Displaycredentialsupdatebutton} onPress={()=>navigation.goBack()}><Text>Update Details</Text></TouchableOpacity>*/}
         </View>
     );
 };

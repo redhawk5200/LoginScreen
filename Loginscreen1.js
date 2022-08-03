@@ -2,21 +2,7 @@
 import React, {useEffect, useState} from 'react';
 
 //here we import the properties like text, buttons etc from react native
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  Button,
-  ScrollView,
-  FlatList,
-  TouchableOpacity,
-  Alert,
-  Image,
-  TouchableWithoutFeedback,
-  Keyboard,
-  Modal,
-} from 'react-native';
+import {Text,View,TextInput,TouchableOpacity,Alert} from 'react-native';
 import styles from './styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -24,6 +10,22 @@ export const Login = ({navigation}) =>{
 
     const [email, setemail] = useState('');
     const [password, setpassword] = useState('');
+
+    useEffect(()=>{
+        getData();
+    }, [])
+
+    const getData = () =>{
+        try {
+            AsyncStorage.getItem('email').then(value=>{
+                if(value == 'Abdul'){
+                    navigation.navigate('Display Details')
+                }
+            })
+        } catch (error) {
+            Alert.alert(error);
+        }
+    }
 
     const submit = async() =>{
         if(email === "Abdul" && password==="Wahab"){
