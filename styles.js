@@ -84,7 +84,7 @@ export default StyleSheet.create({
       borderRadius: 20,
       borderColor: '#3CCF4E',
       marginTop: 30,
-      width: '30%',
+      width: '40%',
       height: '6%',
       marginLeft: 115,
       justifyContent: 'center',
