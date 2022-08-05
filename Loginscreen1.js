@@ -13,7 +13,7 @@ export const Login = ({navigation}) =>{
 
     useEffect(()=>{
         getData();
-    }, [])
+    }, )
 
     const getData = () =>{
         try {

@@ -20,12 +20,9 @@ export const Displaycredentials = ({route, navigation}) =>{
       }, [backButtonHandler]);
 
 
-    function backButtonHandler(){
-        if(navigation && navigation.goBack()){
-            navigation.goBack(null);
-            return true;
-        }
-        return false;
+    const backButtonHandler=()=>{
+        BackHandler.exitApp()
+        return true;
     }
 
 
@@ -46,11 +43,22 @@ export const Displaycredentials = ({route, navigation}) =>{
         }
     }
 
+    const logout=async() =>{
+            try{
+                await AsyncStorage.setItem('email','');
+                await AsyncStorage.setItem('password','');
+                navigation.goBack();
+            } catch (error) {
+                Alert.alert("Error");
+            }
+        }
+    
+
     return(
         <View style={styles.Displaycredentialscontainer}>
             <Text style={styles.Displaycredentialstext}>Welcome User! Your email address is: {email}</Text>
             <TouchableOpacity style={styles.Displaycredentialsgobackbutton} onPress={()=>navigation.goBack()}><Text>Back to login page</Text></TouchableOpacity>
-            {/*<TouchableOpacity style={styles.Displaycredentialsupdatebutton} onPress={()=>navigation.goBack()}><Text>Update Details</Text></TouchableOpacity>*/}
+            <TouchableOpacity style={styles.Displaycredentialsupdatebutton} onPress={()=>logout()}><Text>Logout</Text></TouchableOpacity>
         </View>
     );
 };
