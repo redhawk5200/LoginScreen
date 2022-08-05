@@ -9,11 +9,16 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Login } from './Loginscreen1';
 import { Displaycredentials } from './Displaycredentials';
+import SplashScreen from 'react-native-splash-screen'
 
 
 export default function App(){
   
   const Stack = createNativeStackNavigator();
+
+  useEffect(()=> {
+    SplashScreen.hide();
+  }, []);
 
   return (
     <NavigationContainer>
